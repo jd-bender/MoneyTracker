@@ -1,14 +1,23 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.[contenthash].js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true
     },
-    mode: 'production',
+    mode: 'development',
+    devServer: {
+        port: 3000,
+        static: {
+            directory: path.resolve(__dirname, 'dist')
+        },
+        devMiddleware: {
+            index: 'index.html'
+        }
+    },
     module: {
         rules: [
             {
@@ -22,7 +31,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
             title: 'Money Tracker',
             template: 'index.html'
