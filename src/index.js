@@ -1,1 +1,5 @@
-console.log("hello");
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(document.getElementById('app'));
+root.render(<p>this is jsx</p>);
