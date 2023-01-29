@@ -1,5 +1,4 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
@@ -32,7 +31,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new TerserPlugin(),
         new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
             title: 'Money Tracker',
