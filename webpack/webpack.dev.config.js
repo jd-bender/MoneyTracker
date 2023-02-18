@@ -1,6 +1,7 @@
 const common = require('./webpack.common.config.js');
 const { merge } = require('webpack-merge');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
     output: {
@@ -13,5 +14,6 @@ module.exports = merge(common, {
         static: {
             directory: path.resolve(__dirname, '../dist')
         }
-    }
+    },
+    plugins: [new MiniCssExtractPlugin()]
 });
