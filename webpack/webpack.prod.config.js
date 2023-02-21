@@ -9,7 +9,10 @@ module.exports = merge(common, {
     },
     mode: 'production',
     optimization: {
-        minimizer: [new CssMinimizerPlugin()]
+        minimizer: [
+            `...`,
+            new CssMinimizerPlugin()
+        ]
     },
     plugins: [
         new MiniCssExtractPlugin({
