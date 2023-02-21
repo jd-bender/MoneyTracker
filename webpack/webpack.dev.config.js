@@ -11,6 +11,7 @@ module.exports = merge(common, {
     devtool: 'eval-source-map',
     devServer: {
         port: 3000,
+        historyApiFallback: true,
         static: {
             directory: path.resolve(__dirname, '../dist')
         }

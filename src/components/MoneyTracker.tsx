@@ -18,7 +18,10 @@ const MoneyTracker = () => {
                     </Route>
                     <Route element={<PublicRoutes />}>
                         <Route path="/login" element={<Login />} />
-                        <Route path="/createAccount" element={<CreateAccount />} />
+                        <Route
+                            path="/createAccount"
+                            element={<CreateAccount />}
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>
