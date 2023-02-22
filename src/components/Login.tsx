@@ -4,8 +4,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { child, get, ref } from 'firebase/database';
 import { auth, database as db } from '../firebase';
 import { setUser } from '../reducers/userSlice';
+import WithSuspense from './WithSuspense';
 
-export default function Login() {
+const Login = () => {
+    console.log("running login");
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoggingIn, setIsLoggingIn] = useState(false);
@@ -64,4 +66,6 @@ export default function Login() {
             </div>
         </div>
     );
-}
+};
+
+export default WithSuspense(Login, <div>Loading...</div>);
