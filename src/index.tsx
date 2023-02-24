@@ -8,8 +8,6 @@ import MoneyTracker from './components/MoneyTracker';
 const root = createRoot(document.getElementById('app') as Element);
 
 auth.onAuthStateChanged((user) => {
-    console.log('in onAuthStateChanged');
-    console.log(user);
     if (user) {
         get(child(ref(db), `users/${user.uid}`)).then((snapshot) => {
             const data = snapshot.val();
