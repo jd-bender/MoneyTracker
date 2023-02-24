@@ -1,8 +1,20 @@
-import WithSuspense from "./WithSuspense";
+import WithSuspense from './WithSuspense';
+import Header from './Header';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase';
 
 const Dashboard = () => {
-    console.log("running dashboard");
-    return <></>;
-}
+    const logout = () => {
+        signOut(auth);
+    };
+
+    return (
+        <>
+            <Header />
+            <p>dashboard</p>
+            <button onClick={logout}>Logout</button>
+        </>
+    );
+};
 
 export default WithSuspense(Dashboard, <div>Loading...</div>);
