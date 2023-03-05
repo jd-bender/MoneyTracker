@@ -1,22 +1,33 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../hooks';
+import { Link } from 'react-router-dom';
 import { createUserAccount, setDB } from '../databaseActions';
 import { setUser } from '../reducers/userSlice';
 import WithSuspense from './WithSuspense';
+import UserProfileEditor from './UserProfileEditor';
 import Spinner from './Spinner';
 
 const CreateAccount = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [values, setValues] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+
     const [isCreatingAccount, setIsCreatingAccount] = useState(false);
+
+    const handleFieldChange = (fieldId: string, value: string) => {
+        setValues({ ...values, [fieldId]: value });
+    };
 
     const dispatch = useAppDispatch();
 
     const submitAccountDetails = () => {
         setIsCreatingAccount(true);
+
+        const { email, password, firstName, lastName } = values;
 
         createUserAccount(email, password)
             .then((userData) => {
@@ -60,81 +71,25 @@ const CreateAccount = () => {
                 <div className="flex flex-col items-center mx-auto">
                     <p className="mx-auto text-3xl mb-6">Create Account</p>
 
-                    <span className="w-auto flex flex-col">
-                        <span className="mb-4 self-end">
-                            <label htmlFor="firstName" className="mr-2">
-                                First Name:
-                            </label>
-                            <input
-                                type="text"
-                                name="firstName"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                                onKeyDown={checkIfEnterKeyPressed}
-                            />
-                        </span>
-                        <span className="mb-4 self-end">
-                            <label htmlFor="lastName" className="mr-2">
-                                Last Name:
-                            </label>
-                            <input
-                                type="text"
-                                name="lastName"
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                                onKeyDown={checkIfEnterKeyPressed}
-                            />
-                        </span>
-                        <span className="mb-4 self-end">
-                            <label htmlFor="email" className="mr-2">
-                                Email:
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                onKeyDown={checkIfEnterKeyPressed}
-                            />
-                        </span>
-                        <span className="mb-4 self-end">
-                            <label htmlFor="password" className="mr-2">
-                                Password:
-                            </label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                onKeyDown={checkIfEnterKeyPressed}
-                            />
-                        </span>
-                        <span>
-                            <label htmlFor="confirmPassword" className="mr-2">
-                                Confirm Password:
-                            </label>
-                            <input
-                                type="password"
-                                name="confirmPassword"
-                                value={confirmPassword}
-                                onChange={(e) =>
-                                    setConfirmPassword(e.target.value)
-                                }
-                                onKeyDown={checkIfEnterKeyPressed}
-                            />
-                        </span>
-                    </span>
+                    <UserProfileEditor
+                        onChange={handleFieldChange}
+                        checkIfEnterKeyPressed={checkIfEnterKeyPressed}
+                    />
 
                     {isCreatingAccount ? (
                         <Spinner className="mt-8" />
                     ) : (
                         <button
-                            className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-1/2"
+                            className="mt-8 mb-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-1/2"
                             onClick={submitAccountDetails}
                         >
                             Submit
                         </button>
                     )}
+
+                    <Link to="/">
+                        <span className="underline">Return</span>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -120,7 +120,7 @@ const Login = () => {
                                 Submit
                             </button>
                             <button
-                                className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-1/2"
+                                className="mt-2 mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-1/2"
                                 onClick={quickLogin}
                             >
                                 Quick Login
@@ -128,7 +128,9 @@ const Login = () => {
                         </>
                     )}
 
-                    <Link to="/createAccount">Sign Up</Link>
+                    <Link to="/createAccount">
+                        <span className="underline">Sign Up</span>
+                    </Link>
                 </div>
             </div>
         </div>
