@@ -7,22 +7,26 @@ import MoneyTracker from './components/MoneyTracker';
 
 const root = createRoot(document.getElementById('app') as Element);
 
+const renderApp = () => root.render(<MoneyTracker />);
+
 auth.onAuthStateChanged((user) => {
     if (user) {
-        get(child(ref(db), `users/${user.uid}`)).then((snapshot) => {
+        const uid = user.uid;
+
+        get(child(ref(db), `users/${uid}`)).then((snapshot) => {
             const data = snapshot.val();
 
             store.dispatch(
                 setUser({
-                    uid: user.uid,
+                    uid,
                     ...data
                 })
             );
 
-            root.render(<MoneyTracker />);
+            renderApp();
         });
     } else {
         store.dispatch(setUser({}));
-        root.render(<MoneyTracker />);
+        renderApp();
     }
 });
