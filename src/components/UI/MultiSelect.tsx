@@ -1,4 +1,4 @@
-import { Theme, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,21 +16,6 @@ const MenuProps = {
             width: 250
         }
     }
-};
-
-const getStyles = (
-    item: string,
-    selectedItem: readonly string[],
-    theme: Theme
-) => {
-    const selectedTheme =
-        selectedItem.indexOf(item) === -1
-            ? theme.typography.fontWeightRegular
-            : theme.typography.fontWeightMedium;
-
-    return {
-        fontWeight: selectedTheme
-    };
 };
 
 export default function MultipleSelectChip(props: any) {
@@ -60,7 +45,7 @@ export default function MultipleSelectChip(props: any) {
                         <MenuItem
                             key={item.id}
                             value={item.name}
-                            style={getStyles(item, props.selectedItems, theme)}
+                            style={{fontWeight: theme.typography.fontWeightMedium}}
                         >
                             <Checkbox checked={props.selectedItems.indexOf(item.name) > -1} />
                             <ListItemText primary={item.name} />
