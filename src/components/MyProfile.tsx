@@ -22,22 +22,11 @@ const MyProfile = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        setValues({ ...values, ...user });
+        setValues({ firstName: user.firstName, lastName: user.lastName, email: user.email });
     }, []);
 
     const handleFieldChange = (fieldId: string, value: string) => {
         setValues({ ...values, [fieldId]: value });
-    };
-
-    const handleAlertClose = (
-        event?: React.SyntheticEvent | Event,
-        reason?: string
-    ) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setAlertOpen(false);
     };
 
     const handleSaveFinish = (saveSuccessful: boolean) => {
@@ -49,7 +38,7 @@ const MyProfile = () => {
     const submitAccountDetails = () => {
         setIsSavingAccountDetails(true);
 
-        setDB(`users/${user.uid}`, values)
+        setDB(`users/${user.uid}/profile`, values)
             .then(() => {
                 dispatch(
                     setUser({
@@ -104,7 +93,7 @@ const MyProfile = () => {
             <Toast
                 alertOpen={alertOpen}
                 isSuccessful={saveSuccessful}
-                handleAlertClose={handleAlertClose}
+                handleAlertClose={() => setAlertOpen(false)}
                 successMessage="Account details saved successfully"
             />
         </>

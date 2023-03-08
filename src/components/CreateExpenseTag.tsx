@@ -4,13 +4,22 @@ import { useAppSelector, useAppDispatch } from '../hooks';
 import { pushDB } from '../databaseActions';
 import { addExpenseTag } from '../reducers/expenseTagsSlice';
 import Spinner from './Spinner';
+import Toast from './Toast';
 
 const CreateExpenseTag = () => {
     const [name, setName] = useState('');
+    const [alertOpen, setAlertOpen] = useState(false);
+    const [saveSuccessful, setSaveSuccessful] = useState(false);
     const [isCreatingExpenseTag, setIsCreatingExpenseTag] = useState(false);
 
     const user = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
+
+    const handleSaveFinish = (saveSuccessful: boolean) => {
+        setSaveSuccessful(saveSuccessful);
+        setAlertOpen(true);
+        setIsCreatingExpenseTag(false);
+    };
 
     const submitExpenseTag = () => {
         pushDB(`users/${user.uid}/expenseTags`, {
@@ -24,10 +33,10 @@ const CreateExpenseTag = () => {
                     })
                 );
 
-                setIsCreatingExpenseTag(false);
+                handleSaveFinish(true);
             })
             .catch((e) => {
-                setIsCreatingExpenseTag(false);
+                handleSaveFinish(false);
             });
     };
 
@@ -64,6 +73,13 @@ const CreateExpenseTag = () => {
                     Create Expense Tag
                 </button>
             )}
+
+            <Toast
+                alertOpen={alertOpen}
+                isSuccessful={saveSuccessful}
+                handleAlertClose={() => setAlertOpen(false)}
+                successMessage="Account details saved successfully"
+            />
         </>
     );
 };
