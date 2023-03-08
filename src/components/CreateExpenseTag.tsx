@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { pushDB } from '../databaseActions';
 import { addExpenseTag } from '../reducers/expenseTagsSlice';
+import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 import Toast from './Toast';
 
@@ -19,6 +20,7 @@ const CreateExpenseTag = () => {
         setSaveSuccessful(saveSuccessful);
         setAlertOpen(true);
         setIsCreatingExpenseTag(false);
+        setName('');
     };
 
     const submitExpenseTag = () => {
@@ -50,29 +52,39 @@ const CreateExpenseTag = () => {
 
     return (
         <>
-            <span className="mb-4 self-end">
-                <label htmlFor="name" className="mr-2">
-                    Name:
-                </label>
-                <input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    onKeyDown={checkIfEnterKeyPressed}
-                />
-            </span>
+            <div className="container h-96 mx-auto bg-slate-100 flex flex-row items-center space-y-4 shadow-2xl rounded-2xl">
+                <div className="flex flex-col items-center mx-auto">
+                    <span className="mb-4 self-end">
+                        <label htmlFor="name" className="mr-2">
+                            Name:
+                        </label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            onKeyDown={checkIfEnterKeyPressed}
+                        />
+                    </span>
 
-            {isCreatingExpenseTag ? (
-                <Spinner className="mt-8" />
-            ) : (
-                <button
-                    className="mt-8 mb-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-1/2"
-                    onClick={submitExpenseTag}
-                >
-                    Create Expense Tag
-                </button>
-            )}
+                    {isCreatingExpenseTag ? (
+                        <Spinner className="mt-8" />
+                    ) : (
+                        <>
+                            <button
+                                className="mt-8 mb-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                                onClick={submitExpenseTag}
+                            >
+                                Create Expense Tag
+                            </button>
+
+                            <Link to="/">
+                                <span className="underline">Return</span>
+                            </Link>
+                        </>
+                    )}
+                </div>
+            </div>
 
             <Toast
                 alertOpen={alertOpen}

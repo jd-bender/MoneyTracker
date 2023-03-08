@@ -28,12 +28,10 @@ auth.onAuthStateChanged((user) => {
 
             Object.keys(data.expenseTags).forEach((expenseTagKey) => {
                 const expenseTag = data.expenseTags[expenseTagKey];
-                expenseTags.push({name: expenseTag.name, id: expenseTagKey});
+                expenseTags.push({ name: expenseTag.name, id: expenseTagKey });
             });
 
-            store.dispatch(
-                setExpenseTags(expenseTags)
-            )
+            store.dispatch(setExpenseTags(expenseTags));
 
             renderApp();
         });

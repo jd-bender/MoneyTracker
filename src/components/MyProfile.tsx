@@ -22,7 +22,11 @@ const MyProfile = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        setValues({ firstName: user.firstName, lastName: user.lastName, email: user.email });
+        setValues({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email
+        });
     }, []);
 
     const handleFieldChange = (fieldId: string, value: string) => {
@@ -76,17 +80,19 @@ const MyProfile = () => {
                     {isSavingAccountDetails ? (
                         <Spinner className="mt-8" />
                     ) : (
-                        <button
-                            className="mt-8 mb-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-1/2"
-                            onClick={submitAccountDetails}
-                        >
-                            Save Changes
-                        </button>
-                    )}
+                        <>
+                            <button
+                                className="mt-8 mb-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-1/2"
+                                onClick={submitAccountDetails}
+                            >
+                                Save Changes
+                            </button>
 
-                    <Link to="/">
-                        <span className="underline">Return</span>
-                    </Link>
+                            <Link to="/">
+                                <span className="underline">Return</span>
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
 

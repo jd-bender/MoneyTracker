@@ -1,9 +1,14 @@
 import WithSuspense from './WithSuspense';
+import { useAppSelector, useAppDispatch } from '../hooks';
 import { useState } from 'react';
 
 const CreateExpense = () => {
     const [amount, setAmount] = useState(0);
     const [note, setNote] = useState('');
+
+    const expenseTags = useAppSelector((state) => state.expenseTags);
+
+    const dispatch = useAppDispatch();
 
     const submitExpense = () => {};
 
