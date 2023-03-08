@@ -4,8 +4,8 @@ import { useAppSelector, useAppDispatch } from '../hooks';
 import { pushDB } from '../databaseActions';
 import { addExpenseTag } from '../reducers/expenseTagsSlice';
 import { Link } from 'react-router-dom';
-import Spinner from './Spinner';
-import Toast from './Toast';
+import Spinner from './UI/Spinner';
+import Toast from './UI/Toast';
 
 const CreateExpenseTag = () => {
     const [name, setName] = useState('');
@@ -52,7 +52,7 @@ const CreateExpenseTag = () => {
 
     return (
         <>
-            <div className="container h-96 mx-auto bg-slate-100 flex flex-row items-center space-y-4 shadow-2xl rounded-2xl">
+            <div className="container h-96 mx-auto bg-slate-400 flex flex-row items-center space-y-4 shadow-2xl rounded-2xl">
                 <div className="flex flex-col items-center mx-auto">
                     <span className="mb-4 self-end">
                         <label htmlFor="name" className="mr-2">

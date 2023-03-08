@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
-import Menu from './Menu';
-import ListItem from './ListItem';
+import Menu from './UI/Menu';
+import ListItem from './UI/ListItem';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 

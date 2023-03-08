@@ -6,7 +6,7 @@ import { child, get, ref } from 'firebase/database';
 import { auth, database as db } from '../firebase';
 import { setUser } from '../reducers/userSlice';
 import WithSuspense from './WithSuspense';
-import Spinner from './Spinner';
+import Spinner from './UI/Spinner';
 
 const Login = () => {
     const [email, setEmail] = useState('');

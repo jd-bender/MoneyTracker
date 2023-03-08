@@ -5,7 +5,7 @@ import { createUserAccount, setDB } from '../databaseActions';
 import { setUser } from '../reducers/userSlice';
 import WithSuspense from './WithSuspense';
 import UserProfileEditor from './UserProfileEditor';
-import Spinner from './Spinner';
+import Spinner from './UI/Spinner';
 
 const CreateAccount = () => {
     const [values, setValues] = useState({

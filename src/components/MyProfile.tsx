@@ -3,8 +3,8 @@ import { useAppSelector, useAppDispatch } from '../hooks';
 import { setDB } from '../databaseActions';
 import { setUser } from '../reducers/userSlice';
 import { Link } from 'react-router-dom';
-import Spinner from './Spinner';
-import Toast from './Toast';
+import Spinner from './UI/Spinner';
+import Toast from './UI/Toast';
 import WithSuspense from './WithSuspense';
 import UserProfileEditor from './UserProfileEditor';
 

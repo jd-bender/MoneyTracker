@@ -5,7 +5,6 @@ function useOutsideClickAlerter(ref: any, callback: any) {
         function handleClickOutside(event: any) {
             if (ref.current && !ref.current.contains(event.target)) {
                 callback();
-                //alert('You clicked outside of me!');
             }
         }
 
