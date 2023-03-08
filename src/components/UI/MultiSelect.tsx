@@ -6,6 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
 
 const MenuProps = {
     PaperProps: {
@@ -60,7 +62,8 @@ export default function MultipleSelectChip(props: any) {
                             value={item.name}
                             style={getStyles(item, props.selectedItems, theme)}
                         >
-                            {item.name}
+                            <Checkbox checked={props.selectedItems.indexOf(item.name) > -1} />
+                            <ListItemText primary={item.name} />
                         </MenuItem>
                     ))}
                 </Select>
