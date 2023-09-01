@@ -1,19 +1,20 @@
 "use client";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import { Typography, TextField, Button } from '@mui/material';
 import Link from 'next/link';
-import { useRouter } from "next/navigation";
 
-export default function Login() {
+export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const router = useRouter();
 
-    const submitLogin = async (event) => {
+    const submitAccountCreation = async (event) => {
         event.preventDefault()
 
-        const { result, error } = await signIn(email, password);
+        const { result, error } = await createUserWithEmailAndPassword(email, password);
 
         if (error) {
             return console.log(error);
@@ -21,22 +22,22 @@ export default function Login() {
 
         return router.push("/");
     };
-
+    
     return (
         <span className='bg-white flex flex-col w-1/2 h-1/2 min-w-fit rounded-3xl justify-center place-items-center'>
-            <Typography variant="h4" className="mb-4">Money Tracker</Typography>
+            <Typography variant="h4" sx={{marginBottom:'.5em'}}>Sign Up</Typography>
             
             <span className="mb-4">
                 <TextField label="Email" sx={{width: '20rem'}} onChange={(e) => setEmail(e.target.value)} variant="outlined" />
             </span>
             
             <span className="mb-4">
-                <TextField label="Password" type="password" sx={{width: '20rem'}} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
+                <TextField label="Password" sx={{width: '20rem'}} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
             </span>
 
-            <Button variant="outlined" className="mb-4" onClick={submitLogin}>Login</Button>
-            
-            <Link href="/signup"><u>Sign Up</u></Link>
+            <Button variant="outlined" onClick={submitAccountCreation} sx={{marginBottom:'.5em'}}>Confirm</Button>
+
+            <Link href="/login"><u>Return to Login</u></Link>
         </span>
     );
 };
