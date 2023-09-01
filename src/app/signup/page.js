@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import signUp from "../../firebase/auth/signup";
 import { useRouter } from "next/navigation";
 import { Typography, TextField, Button } from '@mui/material';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ export default function SignUp() {
     const submitAccountCreation = async (event) => {
         event.preventDefault()
 
-        const { result, error } = await createUserWithEmailAndPassword(email, password);
+        const { result, error } = await signUp(email, password);
 
         if (error) {
             return console.log(error);
@@ -32,7 +32,7 @@ export default function SignUp() {
             </span>
             
             <span className="mb-4">
-                <TextField label="Password" sx={{width: '20rem'}} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
+                <TextField label="Password" type="password" sx={{width: '20rem'}} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
             </span>
 
             <Button variant="outlined" onClick={submitAccountCreation} sx={{marginBottom:'.5em'}}>Confirm</Button>
