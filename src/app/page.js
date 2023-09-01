@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
+import ProtectedRouteConcealer from "../ui/ProtectedRouteConcealer";
 import signOutFromApp from "../firebase/auth/signOut";
 
 export default function Home() {
@@ -20,13 +21,11 @@ export default function Home() {
     };
 
     return (
-        user ?
+        <ProtectedRouteConcealer>
             <span>
                 <button>Add Expense</button>
-                <button>View Expenses</button>
                 <button onClick={logout}>Log Out</button>
             </span>
-            :
-            <CircularProgress />
+        </ProtectedRouteConcealer>
     );
 };

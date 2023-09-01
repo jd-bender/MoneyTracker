@@ -1,5 +1,5 @@
 "use client";
-import { useState, createContext, useContext, useEffect, cloneElement } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { CircularProgress } from '@mui/material';
 import firebase_app from '../firebase/config';
@@ -14,16 +14,10 @@ export const AuthContextProvider = ({ children }) => {
     const auth = getAuth(firebase_app);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-            } else {
-                setUser(null);
-            }
+        onAuthStateChanged(auth, (user) => {
+            setUser(user);
             setLoading(false);
         });
-
-        return () => unsubscribe();
     }, []);
 
     return (
