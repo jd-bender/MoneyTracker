@@ -14,4 +14,4 @@ export default async function signIn(email, password) {
     }
 
     return { result, error };
-}
+};

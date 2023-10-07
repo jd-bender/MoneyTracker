@@ -14,4 +14,4 @@ export default async function signOutFromApp() {
     }
 
     return { result, error };
-}
+};

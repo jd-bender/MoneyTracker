@@ -4,7 +4,8 @@ import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { CircularProgress } from '@mui/material';
 import firebase_app from '../firebase/config';
 
-export const AuthContext = createContext({});
+const AuthContext = createContext({});
+
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {

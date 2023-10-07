@@ -57,7 +57,6 @@ export default function Login() {
                             <Button variant="outlined" className="mb-4" onClick={submitLogin}>Login</Button>
                             <Link href="/signup"><u>Sign Up</u></Link>
                         </>
-                        
                 }
             </span>
         </UnprotectedRouteConcealer>
